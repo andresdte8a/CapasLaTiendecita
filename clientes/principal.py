@@ -8,7 +8,7 @@ app.config['SECRET_KEY'] = "random string"
 db = SQLAlchemy(app)
 
 class clientes(db.Model):
-   id = db.Column('clientes_id', db.Integer, primary_key = True)
+   id = db.Column('id', db.Integer, primary_key = True)
    nombre = db.Column(db.String(100))
    apellido = db.Column(db.String(100))
    direccion = db.Column(db.String(200))
@@ -63,6 +63,6 @@ def delete():
     db.session.commit()
     return redirect("/")
 
-if __nombre__ == '__main__':
+if __name__ == '__main__':
    db.create_all()
    app.run(debug = True)

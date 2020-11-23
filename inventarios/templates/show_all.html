@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang = "en">
    <head>
-     <title>Students</title>
+     <title>Productos</title>
      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/default.css') }}">
    </head>
    <body>
       <nav>
-         <a href = "{{ url_for('show_all') }}">Show All Student</a> |
-         <a href = "{{ url_for('new') }}">Add Student</a>
+         <a href = "{{ url_for('show_all') }}">Ver todos</a> |
+         <a href = "{{ url_for('new') }}">Agregar producto</a>
       </nav>
 
       <aside>
@@ -16,35 +16,35 @@
         {%- endfor %}
       </aside>
       <section>      
-        <h3>Students</h3>
+        <h3>Productos</h3>
 
         <table>
            <thead>
               <tr>
-                 <th>Name</th>
-                 <th>City</th>
-                 <th>Address</th>
-                 <th>Pin</th>
+                 <th>ID</th>
+                 <th>Descripcion</th>
+                 <th>Cantidad</th>
+                 <th>Valor Unitario</th>
                  <th colspan="2">Acctions</th>
               </tr>
            </thead>
 
            <tbody>
-              {% for student in students %}
+              {% for producto in productos %}
                  <tr>
-                    <td>{{ student.name }}</td>
-                    <td>{{ student.city }}</td>
-                    <td>{{ student.addr }}</td>
-                    <td>{{ student.pin }}</td>
+                    <td>{{ producto.id }}</td>
+                    <td>{{ producto.descripcion }}</td>
+                    <td>{{ producto.cantidad }}</td>
+                    <td>{{ producto.valor }}</td>
                     <td>
                       <form method="POST" action="/update" style="display: inline">
-                        <input type="hidden" value="{{student.name}}" name="oldname">
+                        <input type="hidden" value="{{producto.id}}" name="oldId">
                         <input type="submit" value="Update">
                       </form>
                     </td>
                     <td>
                       <form method="POST" action="/delete" style="display: inline">
-                        <input type="hidden" value="{{student.name}}" name="oldname">
+                        <input type="hidden" value="{{producto.id}}" name="oldId">
                         <input type="submit" value="Delete">
                       </form>
                     </td>

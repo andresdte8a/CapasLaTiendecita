@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang = "en">
    <head>
-     <title>Students</title>
+     <title>Clientes</title>
      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/default.css') }}">
    </head>
    <body>
       <nav>
-         <a href = "{{ url_for('show_all') }}">Show All Student</a> |
-         <a href = "{{ url_for('new') }}">Add Student</a>
+         <a href = "{{ url_for('show_all') }}">Ver todos los Clientes</a> |
+         <a href = "{{ url_for('new') }}">Agregar Cliente</a>
       </nav>
 
       <aside>
@@ -16,35 +16,37 @@
         {%- endfor %}
       </aside>
       <section>      
-        <h3>Students</h3>
+        <h3>Clientes</h3>
 
         <table>
            <thead>
               <tr>
-                 <th>Name</th>
-                 <th>City</th>
-                 <th>Address</th>
-                 <th>Pin</th>
+                 <th>Identificacion</th>
+                 <th>Nombre</th>
+                 <th>Apellidos</th>
+                 <th>Direccion</th>
+                 <th>Telefono</th>
                  <th colspan="2">Acctions</th>
               </tr>
            </thead>
 
            <tbody>
-              {% for student in students %}
+              {% for cliente in clientes %}
                  <tr>
-                    <td>{{ student.name }}</td>
-                    <td>{{ student.city }}</td>
-                    <td>{{ student.addr }}</td>
-                    <td>{{ student.pin }}</td>
+                    <td>{{ cliente.id }}</td>
+                    <td>{{ cliente.nombre }}</td>
+                    <td>{{ cliente.apellido }}</td>
+                    <td>{{ cliente.direccion }}</td>
+                    <td>{{ cliente.telefono }}</td>
                     <td>
                       <form method="POST" action="/update" style="display: inline">
-                        <input type="hidden" value="{{student.name}}" name="oldname">
+                        <input type="hidden" value="{{cliente.id}}" name="oldId">
                         <input type="submit" value="Update">
                       </form>
                     </td>
                     <td>
                       <form method="POST" action="/delete" style="display: inline">
-                        <input type="hidden" value="{{student.name}}" name="oldname">
+                        <input type="hidden" value="{{cliente.id}}" name="oldId">
                         <input type="submit" value="Delete">
                       </form>
                     </td>

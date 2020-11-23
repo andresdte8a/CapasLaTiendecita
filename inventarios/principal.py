@@ -8,10 +8,10 @@ app.config['SECRET_KEY'] = "random string"
 db = SQLAlchemy(app)
 
 class productos(db.Model):
-   id = db.Column('productos_id', db.Integer, primary_key = True)
+   id = db.Column('id', db.Integer, primary_key = True)
    descripcion = db.Column(db.String(100))
-   cantidad = db.Column(db.Integer(10))
-   valor = db.Column(db.Integer(10))
+   cantidad = db.Column(db.Integer())
+   valor = db.Column(db.Integer())
  
    def __init__(self, descripcion, cantidad, valor):
        self.descripcion = descripcion
@@ -52,14 +52,6 @@ def update_record():
     db.session.commit()
     return redirect('/')
 
-@app.route("/delete", methods=["POST"])
-def delete():
-    nombre = request.form.get("oldnombre")
-    producto = productos.query.filter_by(nombre=nombre).first()
-    db.session.delete(cliente)
-    db.session.commit()
-    return redirect("/")
-
-if __nombre__ == '__main__':
+if __name__ == '__main__':
    db.create_all()
    app.run(debug = True)
