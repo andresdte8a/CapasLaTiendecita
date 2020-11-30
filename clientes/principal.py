@@ -22,11 +22,11 @@ class clientes(db.Model):
        self.direccion = direccion
        self.telefono = telefono
 
-@app.route('/')
+@app.route('/clientes')
 def show_all():
-   return render_template('show_all.html', clientes = clientes.query.all() )
+   return render_template('/clientes/show_all.html', clientes = clientes.query.all() )
 
-@app.route('/get_all', methods = ['GET'])
+@app.route('/clientes/get_all', methods = ['GET'])
 def get_all():
    data = clientes.query.all()
    user_list = []
@@ -40,7 +40,7 @@ def get_all():
     user_list.append(d)
    return json.dumps(user_list)
 
-@app.route('/new', methods = ['GET', 'POST'])
+@app.route('/clientes/new', methods = ['GET', 'POST'])
 def new():
    if request.method == 'POST':
       if not request.form['nombre'] or not request.form['apellidos'] or not request.form['direccion']:
@@ -52,15 +52,15 @@ def new():
          db.session.commit()
          flash('Cliente Agregado Exitosamente')
          return redirect(url_for('show_all'))
-   return render_template('new.html')
+   return render_template('/clientes/new.html')
 
-@app.route("/update", methods=["POST"])
+@app.route("/clientes/update", methods=["POST"])
 def update():
     nombre = request.form.get("oldnombre")
     cliente = clientes.query.filter_by(nombre=nombre).first()
-    return render_template('update.html', result = cliente, oldnombre = nombre)
+    return render_template('/clientes/update.html', result = cliente, oldnombre = nombre)
 
-@app.route("/update_record", methods=["POST"])
+@app.route("/clientes/update_record", methods=["POST"])
 def update_record():
     nombre = request.form.get("oldnombre")
     cliente = clientes.query.filter_by(nombre=nombre).first()
@@ -69,16 +69,16 @@ def update_record():
     cliente.direccion = request.form['direccion']
     cliente.telefono = request.form['telefono']
     db.session.commit()
-    return redirect('/')
+    return redirect('/clientes')
 
-@app.route("/delete", methods=["POST"])
+@app.route("/clientes/delete", methods=["POST"])
 def delete():
     nombre = request.form.get("oldnombre")
     cliente = clientes.query.filter_by(nombre=nombre).first()
     db.session.delete(cliente)
     db.session.commit()
-    return redirect("/")
+    return redirect("/clientes")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
    db.create_all()
-   app.run(debug = True)
+   app.run(host='0.0.0.0',debug=True)
