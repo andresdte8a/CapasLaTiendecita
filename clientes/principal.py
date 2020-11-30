@@ -9,7 +9,7 @@ app.config['SECRET_KEY'] = "random string"
 
 db = SQLAlchemy(app)
 
-class clientes(db.Model):
+class Clientes(db.Model):
    id = db.Column('id', db.Integer, primary_key = True)
    nombre = db.Column(db.String(100))
    apellido = db.Column(db.String(100))
