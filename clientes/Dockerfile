@@ -1,7 +1,6 @@
 FROM python:alpine
 WORKDIR /usr/src/app
 COPY . .
-RUN pip install --no-cache-dir -r requirements.txt
-RUN pip3 install flask_sqlalchemy
+RUN pip install --no-cache-dir -r requirements.tx
 ENTRYPOINT ["python"]
 CMD ["principal.py"]
