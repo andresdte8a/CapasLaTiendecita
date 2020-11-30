@@ -24,7 +24,7 @@ class Clientes(db.Model):
 
 @app.route('/clientes')
 def show_all():
-   return render_template('/clientes/show_all.html', clientes = clientes.query.all() )
+   return render_template('/clientes/show_all.html', clientes = Clientes.query.all() )
 
 @app.route('/clientes/get_all', methods = ['GET'])
 def get_all():
