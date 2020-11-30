@@ -25,7 +25,7 @@ def show_all():
    return render_template('/inventarios/show_all.html', productos = productos.query.all() )
 @app.route('/inventarios/get_all', methods = ['GET'])
 def get_all():
-   data = inventarios.query.all()
+   data = productos.query.all()
    user_list= []
    for row in data :
       d = collections.OrderedDict()
