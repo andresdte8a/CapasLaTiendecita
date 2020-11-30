@@ -13,14 +13,14 @@
        <h3>Students</h3>
       <form action = "/update_record" method = "post">
         <input type = "hidden" name = "oldname" value = "{{ oldname }}" /><br>
-         <label for = "name">Nombre</label>
-         <input type = "text" name = "name" value = "{{ result.name }}" /><br>
-         <label for = "email">Apellidos</label>
-         <input type = "text" name = "city" value = "{{ result.city }}" /><br>
-         <label for = "addr">Dirección</label>
-         <textarea name = "addr" placeholder = "Dirección">{{ result.addr }}</textarea><br>
-         <label for = "PIN">Teléfono</label>
-         <input type = "text" name = "pin" value = "{{ result.pin }}" /><br>
+         <label for = "nombre">Nombre</label>
+         <input type = "text" name = "nombre" value = "{{ result.nombre }}" /><br>
+         <label for = "apellidos">Apellidos</label>
+         <input type = "text" name = "apellidos" value = "{{ result.apellidos }}" /><br>
+         <label for = "direccion">Dirección</label>
+         <textarea name = "direccion" placeholder = "Dirección">{{ result.direccion }}</textarea><br>
+         <label for = "telefono">Teléfono</label>
+         <input type = "text" name = "telefono" value = "{{ result.telefono }}" /><br>
          <input type = "submit" value = "Submit" />
       </form>
     </section>

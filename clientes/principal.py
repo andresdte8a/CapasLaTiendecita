@@ -32,11 +32,11 @@ def get_all():
    user_list = []
    for row in data :
     d = collections.OrderedDict()
-    d['id']  = row.id
-    d['nombre']   = row.nombre
-    d['apellido']      = row.apellido
-    d['direccion']      = row.direccion
-    d['telefono']      = row.telefono
+    d['id'] = row.id
+    d['nombre'] = row.nombre
+    d['apellido'] = row.apellido
+    d['direccion'] = row.direccion
+    d['telefono'] = row.telefono
     user_list.append(d)
    return json.dumps(user_list)
 
