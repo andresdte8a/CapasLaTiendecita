@@ -9,7 +9,7 @@ app.config['SECRET_KEY'] = "random string"
 
 db = SQLAlchemy(app)
 
-class productos(db.Model):
+class Productos(db.Model):
    id = db.Column('id', db.Integer, primary_key = True)
    descripcion = db.Column(db.String(100))
    cantidad = db.Column(db.Integer())
@@ -22,27 +22,33 @@ class productos(db.Model):
 
 @app.route('/inventarios')
 def show_all():
-   return render_template('/inventarios/show_all.html', productos = productos.query.all() )
+   return render_template('/inventarios/show_all.html', productos = Productos.query.all() )
+
 @app.route('/inventarios/get_all', methods = ['GET'])
 def get_all():
-   data = productos.query.all()
+   data = Productos.query.all()
    user_list= []
    for row in data :
       d = collections.OrderedDict()
       d['id'] = row.id
       d['descripcion'] = row.descripcion
-      d['cantidad0'] = row.cantidad
+      d['cantidad'] = row.cantidad
       d['valor'] = row.valor
-      user.list.append(d)
-      return json.dumps(user_list)
+      user_list.append(d)
+      return json.dumps(user_list)                         
 
 @app.route('/inventarios/new', methods = ['GET', 'POST'])
 def new():
+   data = Productos.query.new()
+   user_list = []
+
    if request.method == 'POST':
       if not request.form['descripcion'] or not request.form['cantidad'] or not request.form['valor']:
          flash('Please enter all the fields', 'error')
       else:
-         producto = productos(request.form['descripcion'], request.form['cantidad'],request.form['valor'])
+         d = collections.OrderedDict()
+
+         producto = Productos(request.form['descripcion'], request.form['cantidad'],request.form['valor'])
 
          db.session.add(producto)
          db.session.commit()
@@ -53,13 +59,13 @@ def new():
 @app.route("/inventarios/update", methods=["POST"])
 def update():
     descripcion = request.form.get("olddescripcion")
-    producto = productos.query.filter_by(descripcion=descripcion).first()
+    producto = Productos.query.filter_by(descripcion=descripcion).first()
     return render_template('/inventarios/update.html', result = producto, olddescripcion = descripcion)
 
 @app.route("/inventarios/update_record", methods=["POST"])
 def update_record():
     descripcion = request.form.get("olddescripcion")
-    producto = productos.query.filter_by(descripcion=descripcion).first()
+    producto = Productos.query.filter_by(descripcion=descripcion).first()
     producto.descripcion = request.form['descripcion']
     producto.cantidad = request.form['cantidad']
     producto.valor = request.form['valor']
@@ -69,7 +75,7 @@ def update_record():
 @app.route("/inventarios/delete", methods=["POST"])
 def delete() :
    descripcion = request.form.get("olddescripcion")
-   producto = productos.query.filter_by(descripcion=descripcion).first()
+   producto = Productos.query.filter_by(descripcion=descripcion).first()
    db.session.delete(producto)
    db.session.commit()
    return redirect("/inventarios")
