@@ -28,7 +28,21 @@ def show_all():
 
 @app.route('/clientes/get_all', methods = ['GET'])
 def get_all():
-   data = clientes.query.all()
+   data = Clientes.query.all()
+   user_list = []
+   for row in data :
+    d = collections.OrderedDict()
+    d['id'] = row.id
+    d['nombre'] = row.nombre
+    d['apellido'] = row.apellido
+    d['direccion'] = row.direccion
+    d['telefono'] = row.telefono
+    user_list.append(d)
+   return json.dumps(user_list)
+
+@app.route('/clientes/get_byId/<int:idCliente>', methods = ['GET'])
+def get_byId(idCliente):
+   data = Clientes.query.filter_by(id=idCliente)
    user_list = []
    for row in data :
     d = collections.OrderedDict()
@@ -46,7 +60,7 @@ def new():
       if not request.form['nombre'] or not request.form['apellidos'] or not request.form['direccion']:
          flash('Please enter all the fields', 'error')
       else:
-         cliente = clientes(request.form['nombre'], request.form['apellidos'],request.form['direccion'], request.form['telefono'])
+         cliente = Clientes(request.form['nombre'], request.form['apellidos'],request.form['direccion'], request.form['telefono'])
 
          db.session.add(cliente)
          db.session.commit()
@@ -57,24 +71,24 @@ def new():
 @app.route("/clientes/update", methods=["POST"])
 def update():
     nombre = request.form.get("oldnombre")
-    cliente = clientes.query.filter_by(nombre=nombre).first()
+    cliente = Clientes.query.filter_by(nombre=nombre).first()
     return render_template('/clientes/update.html', result = cliente, oldnombre = nombre)
 
 @app.route("/clientes/update_record", methods=["POST"])
 def update_record():
     nombre = request.form.get("oldnombre")
-    cliente = clientes.query.filter_by(nombre=nombre).first()
+    cliente = Clientes.query.filter_by(nombre=nombre).first()
     cliente.nombre = request.form['nombre']
     cliente.apellidos = request.form['apellidos']
     cliente.direccion = request.form['direccion']
     cliente.telefono = request.form['telefono']
     db.session.commit()
-    return redirect('/clientes')
+    return 1
 
 @app.route("/clientes/delete", methods=["POST"])
 def delete():
     nombre = request.form.get("oldnombre")
-    cliente = clientes.query.filter_by(nombre=nombre).first()
+    cliente = Clientes.query.filter_by(nombre=nombre).first()
     db.session.delete(cliente)
     db.session.commit()
     return redirect("/clientes")

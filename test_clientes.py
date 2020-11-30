@@ -16,4 +16,4 @@ class TestTiendecita:
                     'telefono': "3124589635"
                   }
         clientes = Clientes()
-        assert json.loads(clientes.get_all()) == expected_output
+        assert json.loads(clientes.get_byId(1)) == expected_output
