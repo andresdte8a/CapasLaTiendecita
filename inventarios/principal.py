@@ -18,11 +18,11 @@ class productos(db.Model):
        self.cantidad = cantidad
        self.valor = valor
 
-@app.route('/')
+@app.route('/inventarios')
 def show_all():
-   return render_template('show_all.html', productos = productos.query.all() )
+   return render_template('/inventarios/show_all.html', productos = productos.query.all() )
 
-@app.route('/new', methods = ['GET', 'POST'])
+@app.route('/inventarios/new', methods = ['GET', 'POST'])
 def new():
    if request.method == 'POST':
       if not request.form['descripcion'] or not request.form['cantidad'] or not request.form['valor']:
@@ -33,16 +33,16 @@ def new():
          db.session.add(producto)
          db.session.commit()
          flash('Producto Agregado Exitosamente')
-         return redirect(url_for('show_all'))
-   return render_template('new.html')
+         return redirect(url_for('/inventarios/show_all'))
+   return render_template('/inventarios/new.html')
 
-@app.route("/update", methods=["POST"])
+@app.route("/inventarios/update", methods=["POST"])
 def update():
     id = request.form.get("oldid")
     producto = productos.query.filter_by(id=id).first()
     return render_template('update.html', result = producto, oldid = id)
 
-@app.route("/update_record", methods=["POST"])
+@app.route("/inventarios/update_record", methods=["POST"])
 def update_record():
     id = request.form.get("oldid")
     producto = productos.query.filter_by(id=id).first()
@@ -50,8 +50,8 @@ def update_record():
     producto.cantidad = request.form['cantidad']
     producto.valor = request.form['valor']
     db.session.commit()
-    return redirect('/')
+    return redirect('/inventarios')
 
 if __name__ == '__main__':
    db.create_all()
-   app.run(debug = True)
+   app.run(host='0.0.0.0',debug=True)
