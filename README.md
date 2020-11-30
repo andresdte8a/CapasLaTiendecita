@@ -1,6 +1,6 @@
 # Capas en Archimate e Implementacion de una aplicacion para pedidos en la Tiendecita Los Recuerdos de Ella
 
-A conitnuación se presentan las diferentes vistas elaboradas para la aplicación:
+A continuación se presentan las diferentes vistas elaboradas para la aplicación:
 
 # Comportamiento de Aplicación
 
