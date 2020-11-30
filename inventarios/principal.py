@@ -38,10 +38,15 @@ def get_all():
 
 @app.route('/inventarios/new', methods = ['GET', 'POST'])
 def new():
+   data = inventarios.query.new()
+   user_list = []
+
    if request.method == 'POST':
       if not request.form['descripcion'] or not request.form['cantidad'] or not request.form['valor']:
          flash('Please enter all the fields', 'error')
       else:
+         d = collections.OrderedDict()
+
          producto = productos(request.form['descripcion'], request.form['cantidad'],request.form['valor'])
 
          db.session.add(producto)
