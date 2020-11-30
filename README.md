@@ -4,30 +4,30 @@ A conitnuación se presentan las diferentes vistas elaboradas para la aplicació
 
 # Comportamiento de Aplicación
 
-![builder](CapasArchiMate/Comportamiento de Aplicacion.bmp)
+![builder](CapasArchiMate/ComportamientoAplicacion.bmp)
 
 # Contibución de Objetos
 
-![builder](CapasArchiMate/Contribución de Objetivos.bmp)
+![builder](CapasArchiMate/ContribucionObjetivos.bmp)
 
 
 # Cooperación de Proceso de Negocio
 
-![builder](CapasArchiMate/Cooperacion de Proceso de Negocio.bmp)
+![builder](CapasArchiMate/CooperacionProcesoNegocio.bmp)
 
 # Estructura de Aplicaciones
 
-![builder](CapasArchiMate/Estructura de Aplicaciones.bmp)
+![builder](CapasArchiMate/EstructuraAplicaciones.bmp)
 
 
 # Estructura de Información
 
-![builder](CapasArchiMate/Estructura de Información.bmp)
+![builder](CapasArchiMate/EstructuraInformación.bmp)
 
 
 # Funciones del Negocio
 
-![builder](CapasArchiMate/Funciones del Negocio.bmp)
+![builder](CapasArchiMate/FuncionesNegocio.bmp)
 
 # Infraestructura
 
@@ -35,11 +35,11 @@ A conitnuación se presentan las diferentes vistas elaboradas para la aplicació
 
 # Motivación
 
-![builder](CapasArchiMate/Motivación.bmp)
+![builder](CapasArchiMate/Motivacion.bmp)
 
 # Procesos de Negocio
 
-![builder](CapasArchiMate/Procesos de Negocio.bmp)
+![builder](CapasArchiMate/ProcesosNegocio.bmp)
 
 # Producto
 
@@ -47,27 +47,27 @@ A conitnuación se presentan las diferentes vistas elaboradas para la aplicació
 
 # Realización de Requerimientos
 
-![builder](CapasArchiMate/Realización de Requerimientos.bmp)
+![builder](CapasArchiMate/RealizacionRequerimientos.bmp)
 
 
 # Realización del Servicio
 
-![builder](CapasArchiMate/Realización del Servicio.bmp)
+![builder](CapasArchiMate/RealizacionServicio.bmp)
 
 # Resumen por Capas
 
-![builder](CapasArchiMate/Resumen Por Capas.bmp)
+![builder](CapasArchiMate/ResumenCapas.bmp)
 
 # Uso de Infraestructura
 
-![builder](CapasArchiMate/Uso Infraestructura.bmp)
+![builder](CapasArchiMate/UsoInfraestructura.bmp)
 
 
 # Uso de Aplicación
 
-![builder](CapasArchiMate/Uso de Aplicacion.bmp)
+![builder](CapasArchiMate/UsoAplicacion.bmp)
 
 
 # Vista Modelo Organizacional
 
-![builder](CapasArchiMate/Vista Modelo Organizacional.bmp)
+![builder](CapasArchiMate/VistaModeloOrganizacional.bmp)
