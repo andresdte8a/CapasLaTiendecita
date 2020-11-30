@@ -1,5 +1,7 @@
 from flask import Flask, request, flash, url_for, redirect, render_template
 from flask_sqlalchemy import SQLAlchemy
+import json
+import collections
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///inventarios.sqlite3'
@@ -21,6 +23,18 @@ class productos(db.Model):
 @app.route('/inventarios')
 def show_all():
    return render_template('/inventarios/show_all.html', productos = productos.query.all() )
+@app.route('/inventarios/get_all', methods = ['GET'])
+def get_all():
+   data = inventarios.query.all()
+   user_list= []
+   for row in data :
+      d = collections.OrderedDict()
+      d['id'] = row.id
+      d['descripcion'] = row.descripcion
+      d['cantidad0'] = row.cantidad
+      d['valor'] = row.valor
+      user.list.append(d)
+      return json.dumps(user_list)
 
 @app.route('/inventarios/new', methods = ['GET', 'POST'])
 def new():
@@ -38,20 +52,28 @@ def new():
 
 @app.route("/inventarios/update", methods=["POST"])
 def update():
-    id = request.form.get("oldid")
-    producto = productos.query.filter_by(id=id).first()
-    return render_template('update.html', result = producto, oldid = id)
+    descripcion = request.form.get("olddescripcion")
+    producto = productos.query.filter_by(descripcion=descripcion).first()
+    return render_template('/inventarios/update.html', result = producto, olddescripcion = descripcion)
 
 @app.route("/inventarios/update_record", methods=["POST"])
 def update_record():
-    id = request.form.get("oldid")
-    producto = productos.query.filter_by(id=id).first()
+    descripcion = request.form.get("olddescripcion")
+    producto = productos.query.filter_by(descripcion=descripcion).first()
     producto.descripcion = request.form['descripcion']
     producto.cantidad = request.form['cantidad']
     producto.valor = request.form['valor']
     db.session.commit()
     return redirect('/inventarios')
 
+@app.route("/inventarios/delete", methods=["POST"])
+def delete() :
+   descripcion = request.form.get("olddescripcion")
+   producto = productos.query.filter_by(descripcion=descripcion).first()
+   db.session.delete(producto)
+   db.session.commit()
+   return redirect("/inventarios")
+   
 if __name__ == '__main__':
    db.create_all()
    app.run(host='0.0.0.0',debug=True)
