@@ -2,7 +2,7 @@
 Los recuerdos de ella test
 """
 
-from clientes import *
+from clientes.principal import *
 
 
 class TestTiendecita:
