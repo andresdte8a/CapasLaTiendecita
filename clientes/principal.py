@@ -1,5 +1,7 @@
 from flask import Flask, request, flash, url_for, redirect, render_template
 from flask_sqlalchemy import SQLAlchemy
+import json
+import collections
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///clientes.sqlite3'
@@ -23,6 +25,20 @@ class clientes(db.Model):
 @app.route('/')
 def show_all():
    return render_template('show_all.html', clientes = clientes.query.all() )
+
+@app.route('/get_all', methods = ['GET'])
+def get_all():
+   data = clientes.query.all()
+   user_list = []
+   for row in data :
+    d = collections.OrderedDict()
+    d['id']  = row.id
+    d['nombre']   = row.nombre
+    d['apellido']      = row.apellido
+    d['direccion']      = row.direccion
+    d['telefono']      = row.telefono
+    user_list.append(d)
+   return json.dumps(user_list)
 
 @app.route('/new', methods = ['GET', 'POST'])
 def new():
