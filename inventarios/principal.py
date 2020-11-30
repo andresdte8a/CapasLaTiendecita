@@ -38,14 +38,14 @@ def new():
 
 @app.route("/update", methods=["POST"])
 def update():
-    nombre = request.form.get("oldnombre")
-    producto = productos.query.filter_by(nombre=nombre).first()
-    return render_template('update.html', result = producto, oldnombre = nombre)
+    id = request.form.get("oldid")
+    producto = productos.query.filter_by(id=id).first()
+    return render_template('update.html', result = producto, oldid = id)
 
 @app.route("/update_record", methods=["POST"])
 def update_record():
-    nombre = request.form.get("oldnombre")
-    producto = productos.query.filter_by(nombre=nombre).first()
+    id = request.form.get("oldid")
+    producto = productos.query.filter_by(id=id).first()
     producto.descripcion = request.form['descripcion']
     producto.cantidad = request.form['cantidad']
     producto.valor = request.form['valor']

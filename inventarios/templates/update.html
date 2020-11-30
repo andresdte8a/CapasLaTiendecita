@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Students</title>
+  <title>Productos</title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/default.css') }}">
 </head>
   <body>
      <nav>
-        <a href = "{{ url_for('show_all') }}">Show All Student</a> |
-        <a href = "{{ url_for('new') }}">Add Student</a>
+        <a href = "{{ url_for('show_all') }}">Ver todos</a> |
+        <a href = "{{ url_for('new') }}">Agregar Producto</a>
      </nav>
      <section>
-       <h3>Students</h3>
+       <h3>Productos</h3>
       <form action = "/update_record" method = "post">
-        <input type = "hidden" name = "oldname" value = "{{ oldname }}" /><br>
-         <label for = "name">Name</label>
-         <input type = "text" name = "name" value = "{{ result.name }}" /><br>
-         <label for = "email">City</label>
-         <input type = "text" name = "city" value = "{{ result.city }}" /><br>
-         <label for = "addr">addr</label>
-         <textarea name = "addr" placeholder = "addr">{{ result.addr }}</textarea><br>
-         <label for = "PIN">PIN</label>
-         <input type = "text" name = "pin" value = "{{ result.pin }}" /><br>
-         <input type = "submit" value = "Submit" />
+        <input type = "hidden" name = "oldid" value = "{{ oldid }}" /><br>
+         
+         <label for = "id">Id</label>
+         <input type = "text" name = "id" value = "{{ result.id }}" /><br>
+
+         <label for = "descripcion">Descripcion</label>
+         <input type = "text" name = "descripcion" value = "{{ result.descripcion }}" /><br>
+
+         <label for = "cantidad">Cantidad</label>
+         <textarea name = "cantidad" placeholder = "cantidad">{{ result.cantidad }}</textarea><br>
+
+         <label for = "valor">Valor</label>
+         <input name = "valor" placeholder = "valor"/>{{ result.valor }}<br>
+         
+        <input type = "submit" value = "Submit" />
       </form>
     </section>
    </body>
