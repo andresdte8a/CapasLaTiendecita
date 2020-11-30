@@ -24,7 +24,7 @@ class Clientes(db.Model):
 
 @app.route('/clientes')
 def show_all():
-   return render_template('/clientes/show_all.html', clientes = Clientes.query.all() )
+   return render_template('show_all.html', clientes = Clientes.query.all() )
 
 @app.route('/clientes/get_all', methods = ['GET'])
 def get_all():
@@ -66,13 +66,13 @@ def new():
          db.session.commit()
          flash('Cliente Agregado Exitosamente')
          return redirect(url_for('show_all'))
-   return render_template('/clientes/new.html')
+   return render_template('new.html')
 
 @app.route("/clientes/update", methods=["POST"])
 def update():
     nombre = request.form.get("oldnombre")
     cliente = Clientes.query.filter_by(nombre=nombre).first()
-    return render_template('/clientes/update.html', result = cliente, oldnombre = nombre)
+    return render_template('update.html', result = cliente, oldnombre = nombre)
 
 @app.route("/clientes/update_record", methods=["POST"])
 def update_record():
@@ -91,7 +91,7 @@ def delete():
     cliente = Clientes.query.filter_by(nombre=nombre).first()
     db.session.delete(cliente)
     db.session.commit()
-    return redirect("/clientes")
+    return redirect("/")
 
 if __name__ == "__main__":
    db.create_all()
